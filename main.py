@@ -26,6 +26,7 @@ endx = 0
 xyz = np.loadtxt('Colorado_480x480.dat') # https://www.kaggle.com/questions-and-answers/27699
 
 
+
 # fits in somewhere: https://docs.scipy.org/doc/numpy/user/quickstart.html
 
 def average():
