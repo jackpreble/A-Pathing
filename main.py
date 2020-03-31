@@ -6,7 +6,7 @@ import pygame
 import matplotlib
 import numpy as np
 
-from MapDisplay import *
+from drawMap import *
 
 # using file: "Colorado_480x480.dat"
 
@@ -38,6 +38,8 @@ def average():
 def findStart():
     global avg, startList, startz
 
+    average()
+
     for i in xyz:
         startList.append(int(i[-1]))
 
@@ -46,16 +48,20 @@ def findStart():
 def findEnd():
     global avg, endList, endz
 
+    average()
+
     for i in xyz:
         endList.append(int(i[1]))
 
-    endz = endList[min(range(len(endList)), key=lambda i: abs(endList[i] - startz))]
+    endz = endList[min(range(len(endList)), key=lambda i: abs(endList[i] - startz))] # https://www.geeksforgeeks.org/python-find-closest-number-to-k-in-given-list/
 
 
 def main():
-    average()
+    global gray
+
     findStart()
     findEnd()
+    #draw_map(gray,px=1)
 
     print(avg)
     print(startList)
