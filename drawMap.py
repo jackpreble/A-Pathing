@@ -35,6 +35,6 @@ def draw_map(gray, px=2):
         #pygame.display.flip()
 
 if __name__ == '__main__':
-    elev = dat_to_numpy_elev('Colorado_844x480.dat')
+    elev = dat_to_numpy_elev('Colorado_480x480.dat')
     gray = elev_to_grayscale(elev)
     draw_map(gray,px=1)
