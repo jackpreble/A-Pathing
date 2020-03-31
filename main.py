@@ -21,6 +21,7 @@ endList = [] # values of heights on the far left side of the map
 startx = 480
 endx = 0
 
+#edit
 
 # Working list of all values (organized into lists by x value)
 xyz = np.loadtxt('Colorado_480x480.dat') # https://www.kaggle.com/questions-and-answers/27699
