@@ -19,6 +19,7 @@ endz = 0  # height of end point
 startList = []  # values of heights on the far right side of the map
 endList = [] # values of heights on the far left side of the map
 carryOn = True
+add = np.array([])
 
 # Quick Variables
 startx = 480
@@ -64,36 +65,43 @@ def findEnd():
     endz = endList[min(range(len(endList)), key=lambda i: abs(endList[i] - startz))] # https://www.geeksforgeeks.org/python-find-closest-number-to-k-in-given-list/
 
 
-def buildGrid():
-    global grid, data
+'''def buildGrid():
+    global grid, data, add
 
-    add = []
+    for list in data:
+        for e in list:
+            np.append(add, np.where(e))
+            continue
+        np.append(add, np.where(list))
 
-    c = 0
+    np.append(grid, add)
 
-    for i in data[c]:
-            add.append([e])
+    np.clear(add)'''
 
-    for e in add:
-        for i in data:
-            add.append(np.where(data == i))
+#https://stackoverflow.com/questions/432112/is-there-a-numpy-function-to-return-the-first-index-of-something-in-an-array
 
-    print(add)
 
 def main():
     global carryOn
 
-    '''findStart()
+    findStart()
     findEnd()
 
-    while carryOn:
+    '''while carryOn:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:  # https://stackoverflow.com/questions/26822175/pygame-if-event-type-pygame-keydown-typeerror-int-object-is-not-callable/26822211
                 carryOn = False'''
 
-    print(data)
+    h = np.array([])
+    g = np.array([])
 
-    return(buildGrid())
+    np.append(h, np.asarray(np.where(data == endz)))
+
+    for i in h:
+        np.append(g, [i])
+
+    print(h)
+    print(g)
 
     '''print(avg)
     print(startList)
