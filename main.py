@@ -70,8 +70,10 @@ def findEnd():
 def buildGrid():
     global grid, data
 
+    #https://www.programcreek.com/python/example/86122/numpy.ndenumerate
+    # https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndenumerate.html
 
-    for (x, y), z in np.ndenumerate(data): #https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndenumerate.html
+    for (x, y), z in np.ndenumerate(data):
         grid.append([x, y, z])
 
 
@@ -92,12 +94,6 @@ def main():
     buildGrid()
 
     print(grid)
-
-    '''print(avg)
-    print(startList)
-    print(endList)
-    print(startz)
-    print(endz)'''
 
 if __name__ == "__main__":
     main()
