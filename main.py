@@ -68,10 +68,11 @@ def findEnd():
 
 
 def buildGrid():
-    global grid, data, add
+    global grid, data
 
-    for index, x in np.ndenumerate(data):
-        print(index, x)
+
+    for (x, y), z in np.ndenumerate(data): #https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndenumerate.html
+        grid.append([x, y, z])
 
 
 #https://stackoverflow.com/questions/432112/is-there-a-numpy-function-to-return-the-first-index-of-something-in-an-array
