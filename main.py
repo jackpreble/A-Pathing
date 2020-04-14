@@ -5,6 +5,7 @@ __author__ = "Jack Preble"
 import pygame
 import matplotlib
 import numpy as np
+import re
 
 from drawMap import *
 
@@ -30,18 +31,19 @@ endx = 0
 # Working list of all values (organized into lists by x value)
 data = np.loadtxt('Colorado_480x480.dat') # https://www.kaggle.com/questions-and-answers/27699
 
-grid = np.array([])
+grid = []
+
 
 # fits in somewhere: https://docs.scipy.org/doc/numpy/user/quickstart.html
 
 def average():
-    global avg
+    global avg, data
 
     avg = np.average(data)
 
 
 def findStart():
-    global avg, startList, startz
+    global avg, startList, startz, data
 
     y = 0
 
@@ -55,7 +57,7 @@ def findStart():
 
 
 def findEnd():
-    global avg, endList, endz
+    global avg, endList, endz, data
 
     average()
 
@@ -65,24 +67,18 @@ def findEnd():
     endz = endList[min(range(len(endList)), key=lambda i: abs(endList[i] - startz))] # https://www.geeksforgeeks.org/python-find-closest-number-to-k-in-given-list/
 
 
-'''def buildGrid():
+def buildGrid():
     global grid, data, add
 
-    for list in data:
-        for e in list:
-            np.append(add, np.where(e))
-            continue
-        np.append(add, np.where(list))
+    for index, x in np.ndenumerate(data):
+        print(index, x)
 
-    np.append(grid, add)
-
-    np.clear(add)'''
 
 #https://stackoverflow.com/questions/432112/is-there-a-numpy-function-to-return-the-first-index-of-something-in-an-array
 
 
 def main():
-    global carryOn
+    global carryOn, data, endz
 
     findStart()
     findEnd()
@@ -92,16 +88,9 @@ def main():
             if event.type == pygame.QUIT:  # https://stackoverflow.com/questions/26822175/pygame-if-event-type-pygame-keydown-typeerror-int-object-is-not-callable/26822211
                 carryOn = False'''
 
-    h = np.array([])
-    g = np.array([])
+    buildGrid()
 
-    np.append(h, np.asarray(np.where(data == endz)))
-
-    for i in h:
-        np.append(g, [i])
-
-    print(h)
-    print(g)
+    print(grid)
 
     '''print(avg)
     print(startList)
