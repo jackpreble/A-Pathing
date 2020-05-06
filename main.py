@@ -36,6 +36,8 @@ grid = []
 
 # fits in somewhere: https://docs.scipy.org/doc/numpy/user/quickstart.html
 
+pygame.init()
+
 def average():
     global avg, data
 
@@ -44,8 +46,6 @@ def average():
 
 def findStart():
     global avg, startList, startz, data
-
-    y = 0
 
     average()
 
@@ -73,7 +73,7 @@ def buildGrid():
     #https://www.programcreek.com/python/example/86122/numpy.ndenumerate
     # https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndenumerate.html
 
-    for (x, y), z in np.ndenumerate(data):
+    for (y, x), z in np.ndenumerate(data):
         grid.append([x, y, z])
 
 
@@ -81,19 +81,35 @@ def buildGrid():
 
 
 def main():
-    global carryOn, data, endz
+    global carryOn, data, startz, endz, grid
 
+    open = []
+    closed = []
+    current = []
+
+    average()
     findStart()
     findEnd()
 
-    '''while carryOn:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:  # https://stackoverflow.com/questions/26822175/pygame-if-event-type-pygame-keydown-typeerror-int-object-is-not-callable/26822211
-                carryOn = False'''
-
     buildGrid()
 
-    print(grid)
+    # algorithm uses this tutorial, adapted: https://www.youtube.com/watch?v=-L-WgKMFuhE
+
+    for i in grid:
+        if i[2] == startz and i[0] == 479:
+            open.append(i)
+
+    while carryOn:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT: # https://stackoverflow.com/questions/26822175/pygame-if-event-type-pygame-keydown-typeerror-int-object-is-not-callable/26822211
+                carryOn = False
+
+
+
+
+
+    print(open)
+    print(closed)
 
 if __name__ == "__main__":
     main()
